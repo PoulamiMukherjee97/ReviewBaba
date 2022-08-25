@@ -1,0 +1,31 @@
+.movie-img{
+    width: 170px;
+    height: 300px;
+}
+.rating{
+    text-align: center;
+}
+.sort-list{
+    justify-content: flex-end;
+}
+@media screen and (min-width:768px) and (max-width:1023px) {
+    .movie-img{
+        width: 145px;
+        height: 330px;
+    }
+    
+}
+@media screen and (max-width:767px) {
+    .rating{
+        text-align: left;
+    }
+    .d-sm-flex{
+        display: flex;
+    }
+    .sort-list{
+        justify-content: start;
+    }
+    .w-sm-80{
+        width: 80%;
+    }
+}

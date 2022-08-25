@@ -1,0 +1,34 @@
+.logo-container{
+    position: relative;
+}
+.logo{
+    border:1px solid gold;
+    border-radius:50%;
+}
+.logo-text{
+    position: absolute;
+    top: 133px;
+    right:40px;
+    left: 40px;
+    font-family: cursive;
+}
+.genre-container:hover{
+    transform: scale(1.02);
+}
+.genre-btn:focus{
+    box-shadow: none!important;
+}
+.genre{
+    position: relative;
+}
+.genre-text{
+    position: absolute;
+    background-color: white;
+    bottom: 40%;
+    color: rgb(10, 10, 10);
+    text-shadow: 2px 1px rgb(250, 250, 250);
+    /* left:50%; */
+}
+.logo-text{
+
+}

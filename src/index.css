@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.flex-direction-column{
+  flex-direction: column;
+}
+@media screen and (max-width: 768px) {
+  .flex-direction-sm-column{
+    flex-direction: column;
+  }
+  
+}

@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes, Link, useLocation  } from 'react-router-dom';
-
+import routes from './routes';
 
 const LogIn = lazy(() => import('../modules/login/Login'));
 const SignUp = lazy(() => import('../modules/signup/Signup'));
@@ -30,34 +30,14 @@ const RouteComponent = () => {
   </div>
 </div>}>
             <Routes>
-                <Route
-                    path='/'
-                    element={<LogIn />}
-                    exact
-                    key={1}
-                />
-                <Route
-                    path='/signup'
-                    element={<SignUp />}
-                    exact
-                    key={2}
-                />
-                <Route
-                    path='/home'
-                    element={<Homepage />}
-                    exact
-                    key={3}
-                />
-                <Route
-                    path='/genre/:genre'
-                    element={<Genre />}
-                    key={4}
-                />
-                <Route
-                    path='/genre'
-                    element={<Genre />}
-                    key={4}
-                />
+                {routes.map(route => {
+                const Component = route.element;
+                return <Route
+                    path={route.path}
+                    element={<Component />}
+                    exact={route.exact}
+                    key={route.id}
+                />})}
             </Routes>
         </Suspense>
     </div>);

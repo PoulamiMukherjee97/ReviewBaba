@@ -38,9 +38,10 @@ const Review = () => {
                                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
                                 </div>
-                                <div className="col-md-6">
-                                    <p className="px-2 fw-bold col-md-12 mb-0">{review.imdbrating}/10</p>
-                                    <p className="col-md-12 px-2"><a href="#" className="text-light">Check Here</a></p>
+                                <div className="col-md-9">
+                                    <p className="px-2 fw-bold mb-0">{review.imdbrating}/10</p>
+                                    <p className="px-2 mb-0"><b>{review.reviews}</b> reviews</p>
+                                    <p className="px-2"><a href="#" className="text-light">Check Here</a></p>
                                 </div>
                             </div>
                         </p>
@@ -49,6 +50,8 @@ const Review = () => {
             </div>
             <div className="col-12 col-md-8 mt-md-0 mt-3 text-light">
                 <h3>{review.name}</h3>
+                {review.release && <p className="mb-1">{review.release}</p>}
+                {review.runtime && <p>{review.runtime}</p>}
                 <div className="border-bottom">
                     <h4>StoryLine</h4>
                     <p>{review.plot}</p>
@@ -83,6 +86,10 @@ const Review = () => {
                         </div>
                     </div>
                     <div className="mt-2">
+                        <h5>Performance</h5>
+                        <p>{review.performance}</p>
+                    </div>
+                    <div className="mt-2">
                         <h5>Direction</h5>
                         <p>{review.direction}</p>
                     </div>
@@ -93,16 +100,16 @@ const Review = () => {
                 </div>
                 <div className="mt-2 pb-4">
                     <h4>ReviewBaba Rating</h4>
-                    <div className="row mx-0 mt-4">
-                        <div className="col-12 col-md-4 px-0">
+                    <div className="row mx-0 mt-4 justify-content-center text-center">
+                        <div className="col-12 col-md-6 px-0 mb-3">
                             <h5>Plot</h5>
                             <div>{parse(rating(review.rating))}</div>
                         </div>
-                        <div className="col-12 col-md-4 px-0">
+                        <div className="col-12 col-md-6 px-0 mb-3">
                             <h5>Acting</h5>
                             <div>{parse(rating(review.rating))}</div>
                         </div>
-                        <div className="col-12 col-md-4 px-0">
+                        <div className="col-12 col-md-6 px-0 mb-3">
                             <h5>Screenplay</h5>
                             <div>{parse(rating(review.rating))}</div>
                         </div>

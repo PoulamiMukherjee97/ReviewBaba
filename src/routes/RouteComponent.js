@@ -1,12 +1,6 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Route, Routes, Link, useLocation  } from 'react-router-dom';
 import routes from './routes';
-
-const LogIn = lazy(() => import('../modules/login/Login'));
-const SignUp = lazy(() => import('../modules/signup/Signup'));
-const Homepage = lazy(() => import('../modules/home/Homepage'));
-const Genre = lazy(() => import('../modules/genre/Genre'));
-
 
 const RouteComponent = () => {
   const location = useLocation();

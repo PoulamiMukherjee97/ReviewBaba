@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import './Genre.css';
 import { getMovies } from '../../actions';
 import rating from '../../utils/RatingRender';
 
 const Genre = () => {
-    const location = useLocation();
     const navigate = useNavigate();
     const { searchKey, movies } = useSelector((state) => state.CommonReducer);
-    console.log(searchKey, movies);
+    // console.log(searchKey, movies);
     const dispatch = useDispatch();
     const [view, setView] = useState('list');
     const [moviesToShow, setMoviesToShow] = useState([]);
     const params = useParams();
     const genre = params.genre.charAt(0).toUpperCase()+params.genre.slice(1);
-    console.log(params);
+    // console.log(params);
     useEffect(() => {
         if (searchKey.length === 0) {
             dispatch({ type: 'SAVE_SEARCH_KEY', payload: genre });
@@ -75,14 +74,15 @@ const Genre = () => {
     };
     const handleSearch = (search) => {
         let moviesCopy = [...movies];
-        moviesCopy = moviesCopy.filter(movie => {
+        moviesCopy = moviesCopy.filter(movie => { 
             if (movie.name.toLowerCase().includes(search.toLowerCase()))
                 return movie;
+
         });
         setMoviesToShow(moviesCopy);
     }
     const checkReview = (movie) => {
-        console.log(movie);
+        // console.log(movie);
         dispatch({ type: 'SET_REVIEW', payload: movie });
         navigate(`/review/${movie._id}`);
     }
@@ -193,9 +193,9 @@ const Genre = () => {
                 </div>
                 <div className="my-4 row mx-0">
                     {moviesToShow.map(movie => (
-                        <div key={movie.id} className={`row mx-0 border my-2 shadow-lg p-4 d-flex ${view === 'list' ? 'col-md-12' : 'col-md-3'}`}>
+                        <div key={movie._id} className={`row mx-0 border my-2 shadow-lg p-4 d-flex ${view === 'list' ? 'col-md-12' : 'col-md-3 mx-5'}`}>
                             <div className={`col-12 d-flex justify-content-center ${view === 'list' ? 'col-md-3' : 'col-md-12'}`}>
-                                <img src={movie.image} onError={(e) => {
+                                <img alt="" src={movie.image} onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
 
@@ -208,16 +208,16 @@ const Genre = () => {
                                 <p className="mb-1"><span className="fw-bold">Released on:</span> {movie.released}</p>
                                 {/* <p><span className="fw-bold">Cast:</span> {movie.actors}</p> */}
                                 <div className={`d-block ${view === 'list' ? ' d-md-none' : 'd-md-block'}`}>
-                                    <h4>Rating</h4>
-                                    <div>{parse(rating(movie.rating))}</div>
-                                    <p className="mt-3">Number of reviews- {movie.reviews} reviews</p>
+                                    <h4>Imdb Rating</h4>
+                                    <div>{parse(rating(movie.imdbRating))}</div>
+                                    <p className="mt-3">Number of reviews- {movie.imdbReview} reviews</p>
                                 </div>
                                 <button className="btn btn-outline-secondary" onClick={() => checkReview(movie)}>Check Review</button>
                             </div>
                             <div className={`d-none d-md-block col-12 px-md-1 mt-md-0 mt-3 rating ${view === 'list' ? 'col-md-3' : 'd-md-none'}`}>
-                                <h4>Rating</h4>
-                                <div>{parse(rating(movie.rating))}</div>
-                                <p className="mt-3">Based on {movie.reviews} reviews</p>
+                                <h4>IMDB Rating</h4>
+                                <div>{parse(rating(movie.imdbRating))}</div>
+                                <p className="mt-3">Based on {movie.imdbReview} reviews</p>
                             </div>
                         </div>
                     ))}

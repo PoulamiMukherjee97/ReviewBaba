@@ -10,5 +10,5 @@ export const getMovies = (type, searchKey) => async (dispatch) => {
     } else {
         dispatch({ type: 'SET_MOVIES_ERROR' });
     }
-    console.log(res.data);
+    // console.log(res.data);
 }

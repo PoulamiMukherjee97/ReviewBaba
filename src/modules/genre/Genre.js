@@ -195,14 +195,18 @@ const Genre = () => {
                     {moviesToShow.map(movie => (
                         <div key={movie.id} className={`row mx-0 border my-2 shadow-lg p-4 d-flex ${view === 'list' ? 'col-md-12' : 'col-md-3'}`}>
                             <div className={`col-12 d-flex justify-content-center ${view === 'list' ? 'col-md-3' : 'col-md-12'}`}>
-                                <img src={movie.image} className={`movie-img ${view === 'list' ? '' : 'w-100'}`} />
+                                <img src={movie.image} onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+
+                }} className="movie-img w-100" />
                             </div>
                             <div className={`col-12  mt-md-0 mt-3 ${view === 'list' ? 'col-md-6' : 'col-md-12 mt-md-3'}`}>
                                 <h3>{movie.name}</h3>
                                 {view === "list" && <p>{`${movie.plot.substring(0, 200)}...`}</p>}
                                 <p className="mb-1"><span className="fw-bold">Directed By:</span> {movie.director}</p>
                                 <p className="mb-1"><span className="fw-bold">Released on:</span> {movie.released}</p>
-                                <p><span className="fw-bold">Cast:</span> {movie.actors}</p>
+                                {/* <p><span className="fw-bold">Cast:</span> {movie.actors}</p> */}
                                 <div className={`d-block ${view === 'list' ? ' d-md-none' : 'd-md-block'}`}>
                                     <h4>Rating</h4>
                                     <div>{parse(rating(movie.rating))}</div>
